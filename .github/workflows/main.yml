@@ -1,7 +1,5 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
-
 name: Deploy to GitHub Pages
 
 on:
@@ -15,7 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # checkout your repo - this is an official action provided by GitHub
 
-    - name: Run a multi-line script
-      run: |
-        echo test the checkout action,
-        ls -a
+    - name: Generate static vuepress files
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm i # install dependencies
+    - run: npm run build # run build
